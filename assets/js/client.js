@@ -168,6 +168,12 @@ $(function() {
     }
   });
 
+  irc.socket.on('action', function(data) {
+      var chatWindow = irc.chatWindows.getByName(data.to.toLowerCase());
+      chatWindow.stream.add({sender: data.from, raw: '\u0001ACTION ' + data.text, type: 'message'});
+  });
+
+
   irc.socket.on('part', function(data) {
     var chanName = data.channel.toLowerCase();
     console.log('Part event received for ' + chanName + ' - ' + data.nick);
