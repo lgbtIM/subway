@@ -56,7 +56,7 @@ var OverviewView = Backbone.View.extend({
     secure = $('#connect-secure').is(':checked'),
     selfSigned = $('#connect-selfSigned').is(':checked'),
     rejoin = $('#connect-rejoin').is(':checked'),
-    password = $('#connect-password').val();
+    password = $('#connect-password').val() || null;
     
     if (!server) {
       $('#connect-server').closest('.control-group').addClass('error');
