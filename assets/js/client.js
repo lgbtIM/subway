@@ -18,23 +18,36 @@ window.irc = {
   loggedIn: false
 };
 
-window.unity = {
-//  api: external.getUnityObject(1.0),
-  connected: false
-};
+$(function() {
+	if (external.getUnityObject) {
+		// we're on a machine with unity installed.
+
+		window.unity = {
+			isUnity: true,
+			api: external.getUnityObject(1.0),
+			connected: false
+		};
+	} else {
+		window.unity = {
+			isUnity: false,
+			connected: false
+		};
+	}
+});
 
 $(function() {
   // window.app = new ChatApplicationRouter;
   irc.appView = new ChatApplicationView();
 
-
-  window.unity.init({
-    name: "Subay IRC",
-    iconUrl: window.location.protocol+"//"+window.location.host+"/assets/images/subway.png",
-    onInit: function() {
-      window.unity.connected = true;
-    }
-  });
+  if (window.unity.isUnity === true) {
+    window.unity.init({
+      name: "Subay IRC",
+      iconUrl: window.location.protocol+"//"+window.location.host+"/assets/images/subway.png",
+      onInit: function() {
+        window.unity.connected = true;
+      }
+    });
+  }
 
   // EVENTS //
 
