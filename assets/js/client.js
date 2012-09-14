@@ -19,7 +19,7 @@ window.irc = {
 };
 
 window.unity = {
-  api: external.getUnityObject(1.0),
+//  api: external.getUnityObject(1.0),
   connected: false
 };
 
