@@ -13,3 +13,7 @@ exports.prod = {
 exports.misc = {
   max_log_size: 32000
 }
+
+exports.irc = {
+  hostname: 'irc.staticbox.net'
+}

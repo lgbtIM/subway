@@ -48,8 +48,7 @@ var OverviewView = Backbone.View.extend({
     event.preventDefault();
     $('.error').removeClass('error');
 
-    var server = $('#connect-server').val(),
-    nick = $('#connect-nick').val(),
+    var nick = $('#connect-nick').val(),
     port = $('#connect-port').val(),
     away = $('#connect-away').val(),
     realName = $('#connect-realName').val() || nick,
@@ -58,21 +57,17 @@ var OverviewView = Backbone.View.extend({
     rejoin = $('#connect-rejoin').is(':checked'),
     password = $('#connect-password').val() || null;
     
-    if (!server) {
-      $('#connect-server').closest('.control-group').addClass('error');
-    }
-    
     if (!nick) {
       $('#connect-nick').closest('.control-group').addClass('error');
     }
     
-    if (nick && server) {
+    if (nick) {
       $('form').append(ich.load_image());
       $('#connect-button').addClass('disabled');
 
       var connectInfo = {
+        server: 'IRC',
         nick: nick,
-        server: server,
         port: port,
         secure: secure,
         selfSigned: selfSigned,
